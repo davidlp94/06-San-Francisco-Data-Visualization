@@ -1,6 +1,6 @@
 # San Francisco Housing Data Visualization
 ## Introduction
-This application is designed to find properties in San Francisco market that represent viable investment opportunities. This single Jupyter Notebook utilizes Pandas, PyViz and hvPlot functions to generate interactive data visualiztions, including data aggregation, and geospatial analysis.
+This application is designed to find properties in San Francisco market that represent viable investment opportunities. This single Jupyter Notebook utilizes Pandas, PyViz and hvPlot functions to generate interactive data visualiztions, including data aggregation, and geospatial analysis (using geoviews).
 
 ---
 
@@ -106,7 +106,81 @@ The interactive hvplot that was generated also contains a widget where you can s
 
 ---
 ## Part 4: Build an Interactive Neighborhood Map
-The final part of this application 
+The final part of this application utilizes hvplot and geoviews to plot on a map view and/or satelittle view of a geographical area. For this part, we need to read in some .csv data that contains the longitude and latitude of San Francisco neighborhoods, concatentate with the housing data and plotted geographically using hvplot and geoviews.
+```
+neighborhood_locations_df = pd.read_csv(Path('Resources/neighborhoods_coordinates.csv'), index_col='Neighborhood')
+
+all_neighborhood_info_df = sfo_data_df.groupby('neighborhood').mean()
+
+all_neighborhoods_df = pd.concat(
+    [neighborhood_locations_df, all_neighborhood_info_df], 
+    axis="columns",
+    sort=False
+)
+all_neighborhoods_df = all_neighborhoods_df.reset_index().dropna()
+all_neighborhoods_df = all_neighborhoods_df.rename(columns={"index": "Neighborhood"})
+
+all_neighborhoods_df.hvplot.points(
+    'Lon',
+    'Lat',
+    geo=True,
+    size='sale_price_sqr_foot',
+    color='gross_rent',
+    tiles='OSM',
+    frame_width=700,
+    frame_height=500,
+)
+```
+![image](https://user-images.githubusercontent.com/96163075/153294048-8356534b-8f73-4f38-b99f-1108a2d66ef1.png)
+
+Based on the interactive plot above, the neighborhood that has the highest gross rent is Westwood Park and Union Square District has the highest sale price per square foot. The majority of San Francisco neighborhoods rental prices have been steadily increasing year-over-year. Most nieghborhoods average sale price per square foot is steadily increasing as well but not as drastic as rent prices. However, Union Square District average sale price per square foot is drastically increasing. Based on the entire analysis, I would suggest to invest in Westwood Park becvause it has one of the highest gross rent with the lowestt average sale price per sq. foot cost.
+
+---
+
+## Contributors
+
+David Lee Ping
+
+email: davidleeping@gmail.com
+
+Phone: 570.269.5973
+
+LinkedIn: https://www.linkedin.com/in/david-lee-ping/
+
+---
+
+## License
+
+MIT License
+
+Copyright (c) [2022] [David Lee Ping]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+
+
+
+
+
+
+
 
 
 
