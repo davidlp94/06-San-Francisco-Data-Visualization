@@ -131,7 +131,7 @@ all_neighborhoods_df.hvplot.points(
     frame_height=500,
 )
 ```
-![image](https://user-images.githubusercontent.com/96163075/153294048-8356534b-8f73-4f38-b99f-1108a2d66ef1.png)
+![image](https://user-images.githubusercontent.com/96163075/153302356-1c6afb21-8be7-4805-8620-3d72fdd77468.png)
 
 Based on the interactive plot above, the neighborhood that has the highest gross rent is Westwood Park and Union Square District has the highest sale price per square foot. The majority of San Francisco neighborhoods rental prices have been steadily increasing year-over-year. Most nieghborhoods average sale price per square foot is steadily increasing as well but not as drastic as rent prices. However, Union Square District average sale price per square foot is drastically increasing. Based on the entire analysis, I would suggest to invest in Westwood Park becvause it has one of the highest gross rent with the lowestt average sale price per sq. foot cost.
 
