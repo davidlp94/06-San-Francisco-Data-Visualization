@@ -2,6 +2,8 @@
 ## Introduction
 This application is designed to find properties in San Francisco market that represent viable investment opportunities. This single Jupyter Notebook utilizes Pandas, PyViz and hvPlot functions to generate interactive data visualiztions, including data aggregation, and geospatial analysis (using geoviews).
 
+Added live application link: https://github.com/davidlp94/06_DLP_San_Francisco_Data_Visualization/blob/main/san_francisco_housing.ipynb
+
 ---
 
 ## Technologies
